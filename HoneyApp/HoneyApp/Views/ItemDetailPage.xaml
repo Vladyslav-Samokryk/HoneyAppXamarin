@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:service="clr-namespace:HoneyApp.Services" xmlns:viewmodels="clr-namespace:HoneyApp.ViewModels"
+             x:Class="HoneyApp.Views.ItemDetailPage"
+             Title="{Binding Title}"
+            
+             Shell.ForegroundColor="Black"
+             Shell.TitleColor="Black"
+            >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <service:ByteToImageFieldConverter x:Key="bic" />
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+    <StackLayout Spacing="20" Padding="15" x:DataType="viewmodels:ItemDetailViewModel">
+        <Image HeightRequest="200" Source="{Binding ProductImage,Converter= {StaticResource bic}}"/>
+       
+            
+         <Label Text="{Binding Name}" FontSize="Large" TextColor="Black"/>
+        <Label  FontSize="Medium" TextColor="Black" >
+            <Label.FormattedText>
+                <FormattedString>
+                    <FormattedString.Spans>
+                        <Span Text="Ціна: "/>
+                        <Span Text="{Binding Price}"/>
+                        <Span Text=" грн "/>
+                    </FormattedString.Spans>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Label Text="{Binding Description}" FontSize="Small" TextColor="Black"/>
+        <Button Text="Add to Basket" Command="{Binding  AddToBasket}"
+                CommandParameter="{Binding Id}"/>
+    </StackLayout>
+    
+</ContentPage>

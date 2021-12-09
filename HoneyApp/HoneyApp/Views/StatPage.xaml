@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             x:Class="HoneyApp.Views.StatPage"
+             Title="Статистика"
+             Shell.ForegroundColor="Black"
+             Shell.TitleColor="Black">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#6d5a2b" Padding="10">
+            <Frame Padding="10" CornerRadius="10">
+                <microcharts:ChartView x:Name="chartView"
+                                   HeightRequest="550"
+                                   />
+            </Frame>
+           
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

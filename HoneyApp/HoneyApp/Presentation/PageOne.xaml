@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<animations:PopupPage  xmlns:animations="http://rotorgames.com"
+                       xmlns="http://xamarin.com/schemas/2014/forms"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+                       xmlns:extens="clr-namespace:HoneyApp.Services"
+                        xmlns:system="clr-namespace:System;assembly=netstandard" 
+                       xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+                       x:Class="HoneyApp.Presentation.PageOne">
+    <ContentPage.Content>
+        <Frame BackgroundColor="White" Margin="10" CornerRadius="10">
+            <ScrollView VerticalScrollBarVisibility="Never">
+                <StackLayout>
+                    <Label Text="Про нас" HorizontalOptions="Center"
+                           FontAttributes="Bold" TextColor="Black"
+                           FontSize="20"/>
+                    <forms:AnimationView
+                        x:Name="animationView" 
+                        Animation="beeanimation.json"
+                        AnimationSource="AssetOrBundle"
+                        AutoPlay="True"
+                        RepeatMode="Infinite"
+                        VerticalOptions="Start"  
+                        HeightRequest="300"
+                        HorizontalOptions="FillAndExpand"/>
+
+                    <Label TextColor="Black"  Margin="10,0,0,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Місія: " FontAttributes="Bold" FontSize="18"/>
+                                    <Span Text="Робити смачний і корисний мед доступним для кожного."  FontSize="18"/>
+                                    <Span Text="{x:Static system:Environment.NewLine}"/>
+                                    <Span Text="{x:Static system:Environment.NewLine}"/>
+
+                                    <Span Text="Ціль: " FontAttributes="Bold" FontSize="18"/>
+                                    <Span Text="Продавати найвідоміші види меду, і з часом розширювати асортимент продаючи все нові товари пов'язані з медом"  
+                                      FontSize="18"/>
+                                    <Span Text="{x:Static system:Environment.NewLine}"/>
+                                    <Span Text="{x:Static system:Environment.NewLine}"/>
+
+                                    <Span Text="Товарна політика: " FontAttributes="Bold" FontSize="18"/>
+                                    <Span Text="Дропшиппінг"  
+                                      FontSize="18"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="Споживачі" HorizontalOptions="Center" Margin="0,20,0,0"
+                           FontAttributes="Bold" TextColor="Black"
+                           FontSize="20"/>
+                    <Image Margin="20,0,10,0" Source="{extens:ImageResource honeyImage.png}" Aspect="AspectFit" HorizontalOptions="Center"
+                        WidthRequest="300"/>
+                    <Label TextColor="Black"  Margin="10,0,0,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+
+                                    <Span Text="Наш мед люблять люди всіх вікових категорій.  Кожен з них відчуває смак нашого меду на повну.
+                                      "  FontSize="18"/>
+                                    <Span Text="{x:Static system:Environment.NewLine}"/>
+                                    <Span Text= "Тільки люди, що мають протипоказання для вживання меду не можуть цього зробити, але будьте певні, ми знайдемо рішення і для них."  FontSize="18"/>
+                                    <Span Text="{x:Static system:Environment.NewLine}"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                    <Label Text="Наше забезпечення" HorizontalOptions="Center" 
+                           FontAttributes="Bold" TextColor="Black"
+                           FontSize="20"/>
+                    <Label TextColor="Black"  Margin="10,0,0,0">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <FormattedString.Spans>
+                                    <Span Text="Власні сервери дозволяють зробити ваші покупки легшими, швидшими і дешевшими."  FontSize="18"/>
+                                    <Span Text="{x:Static system:Environment.NewLine}"/>
+                                    <Span Text= "Просто зробіть замовлення, про решту подбають наші технології"  FontSize="18"/>
+                                    <Span Text="{x:Static system:Environment.NewLine}"/>
+                                </FormattedString.Spans>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                </StackLayout>
+            </ScrollView>
+        </Frame>
+        
+    </ContentPage.Content>
+</animations:PopupPage>

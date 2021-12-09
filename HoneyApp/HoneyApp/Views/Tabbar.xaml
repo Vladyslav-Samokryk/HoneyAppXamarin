@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HoneyApp.Views.Tabbar"
+             xmlns:views ="clr-namespace:HoneyApp.Views">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Color x:Key="iconColor">#000</Color>
+            <x:Double x:Key="fontSize">28</x:Double>
+            <x:String x:Key="Home">&#xe800;</x:String>
+            <x:String x:Key="Catalog">&#xe801;</x:String>
+            <x:String x:Key="Basket">&#xe802;</x:String>
+            <x:String x:Key="User">&#xe803;</x:String>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <StackLayout Orientation="Horizontal" Padding="0,10" x:Name="tabs">
+            <views:FontImage  Source="{StaticResource Home}"
+                          Color="{StaticResource iconColor}" Size="{StaticResource fontSize}"  />
+            <views:FontImage  Source="{StaticResource Catalog}"
+                          Color="{StaticResource iconColor}" Size="{StaticResource fontSize}"  />
+            <views:FontImage  Source="{StaticResource Basket}"
+                          Color="{StaticResource iconColor}" Size="{StaticResource fontSize}"  />
+            <views:FontImage  Source="{StaticResource User}"
+                          Color="{StaticResource iconColor}" Size="{StaticResource fontSize}"  />          
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:system="clr-namespace:System;assembly=netstandard" 
+             xmlns:views="clr-namespace:HoneyApp.Views" xmlns:behavior="clr-namespace:HoneyApp.Behaviors"
+             x:Class="HoneyApp.Views.PayPage"
+             Title="Оплата" Shell.ForegroundColor="Black"
+             Shell.TitleColor="Black"
+             
+             x:DataType="views:PayPageViewModel">
+    <ContentPage.Content>
+        <Grid>            
+            <StackLayout>
+
+                <Frame x:Name="outerFrame" HasShadow="False" Padding="0"
+                   HorizontalOptions="FillAndExpand" CornerRadius="20" 
+                    OutlineColor="Black" Margin="20"  >
+                    <Frame x:Name="innerFrame" Margin="10" Padding="0" HasShadow="False" 
+                        HorizontalOptions="FillAndExpand" CornerRadius="20">
+                        <StackLayout>
+                            <Label Padding="10,0" FontSize="20" TextColor="Black">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span Text="До оплати:"/>
+
+                                            <Span Text="{Binding Sum}" FontAttributes="Bold" 
+                                              FontSize="20" TextColor="#24902F"/>
+                                            <Span Text=" грн"/>
+                                            <Span Text="{x:Static system:Environment.NewLine}"/>
+                                            <Span Text="Нове замовлення"/>
+                                            
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+
+                    </Frame>
+                </Frame>
+
+                <Frame HasShadow="True">
+                    <StackLayout >
+                        <Label Text="Номер карти" TextColor="Black" FontSize="16"/>
+                        <Entry Keyboard="Numeric" Placeholder="0000-0000-0000-0000">
+                            <Entry.Behaviors>
+                                <behavior:MaskedBehavior Mask="XXXX-XXXX-XXXX-XXXX" />
+                            </Entry.Behaviors>
+                        </Entry>
+                        <Grid RowDefinitions="auto">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Grid.Row="0" Text="Термін дії"  TextColor="Black" FontSize="16">
+                               
+                            </Label>
+                            <Entry Grid.Column="0" Grid.Row="1"  Keyboard="Numeric" Placeholder="00/00">
+                                <Entry.Behaviors>
+                                    <behavior:MaskedBehavior Mask="XX/XX" />
+                                </Entry.Behaviors>
+                            </Entry>
+                            <Label Grid.Column="1" Grid.Row="0" Text="CVV"  TextColor="Black" FontSize="16"/>
+                            <Entry Grid.Column="1" Grid.Row="1" Keyboard="Numeric" 
+                               IsPassword="True" Placeholder="000">
+                                <Entry.Behaviors>
+                                    <behavior:MaskedBehavior Mask="XXX" />
+                                </Entry.Behaviors>
+                            </Entry>
+                        </Grid>
+                        <Button Text="Оплатити" Clicked="Button_Clicked"    />
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <Grid x:Name="bRing" BackgroundColor="#97fffff2" IsVisible="False">
+                
+            </Grid>
+            <ActivityIndicator IsRunning="False" Color="Black" Scale="0.25"
+                               x:Name="payRing"
+                               BackgroundColor="Transparent"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="FillAndExpand"
+                               />
+        </Grid>
+       
+    </ContentPage.Content>
+</ContentPage>

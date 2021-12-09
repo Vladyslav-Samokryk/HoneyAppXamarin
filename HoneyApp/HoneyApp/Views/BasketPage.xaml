@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HoneyApp.Views.BasketPage"
+               Title="{Binding Title}"
+             xmlns:local="clr-namespace:HoneyApp.ViewModels"  
+             xmlns:model="clr-namespace:HoneyApp.Models" xmlns:views="clr-namespace:HoneyApp.Views" xmlns:service="clr-namespace:HoneyApp.Services"
+             x:Name="BrowseItemsPage"
+             Shell.NavBarIsVisible="False"
+             x:DataType="local:BasketViewModel">
+ 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <service:ByteToImageFieldConverter x:Key="bic" />
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+    <!--
+      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
+      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
+    -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0" Padding="30,0">
+            <Label  Text="Shopping bag" TextColor="Black" FontSize="30" HorizontalTextAlignment="Center" Padding="0,4,0,0">
+
+            </Label>
+            <BoxView BackgroundColor="Black" HorizontalOptions='FillAndExpand' HeightRequest="5" />
+        </StackLayout>
+        <Label Grid.Row="1" Text="Корзина порожня" VerticalOptions="Center" HorizontalOptions="Center"
+               HorizontalTextAlignment="Center"
+               FontSize="60" TextColor="#50505010" IsVisible="{Binding IsNoWares}" />
+        <RefreshView Grid.Row="1" x:DataType="local:BasketViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Products}"
+                       
+                SelectionMode="None" >
+                <CollectionView.ItemTemplate >
+                    <DataTemplate >
+                        <Grid Padding="5,10">
+                            <Frame Padding="1,0,1,2"  CornerRadius="20" BackgroundColor="Gray">
+                                <Frame Padding="0"  CornerRadius="20"  HeightRequest="120" HasShadow="False">
+                                    <StackLayout Orientation="Horizontal" x:DataType="model:BasketProduct">
+                                        <Image  Source="{Binding  Icon,Converter= {StaticResource bic}}"/>
+                                        <StackLayout Padding="0,10"  HorizontalOptions ="FillAndExpand">
+                                            <Label Text="{Binding Name}" 
+                                                   HorizontalOptions="Center"                                                   
+                                                    LineBreakMode="NoWrap" 
+                                                    Style="{DynamicResource ListItemTextStyle}" 
+                                                    FontSize="26"
+                                                     TextColor="Black" />
+                                            <StackLayout Orientation="Horizontal"
+                                                         HorizontalOptions="Center"
+                                                         VerticalOptions="Center">
+                                                <Label  Text="--"
+                                                       FontSize="40"
+                                                      TextColor="Orange">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer 
+                                                            NumberOfTapsRequired="1"
+                                                            Command="{Binding RemoveCommand}"		
+                                                            > 
+                                                        </TapGestureRecognizer>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                                <Label Text="{Binding Count}"
+                                                       VerticalOptions="Center"
+                                                      FontSize="35"
+                                                      TextColor="Black"
+                                                     />
+                                                <Label  Text="+"
+                                                       VerticalOptions="Center"
+                                                      FontSize="40"
+                                                      TextColor="Orange">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer 
+                                                            NumberOfTapsRequired="1"
+                                                            Command="{Binding AddCommand}"		
+                                                            >
+                                                        </TapGestureRecognizer>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+
+                                            </StackLayout>
+
+                                        </StackLayout>
+                                        <Label Text="{Binding Price}"   FontSize="20"
+                                                      TextColor="Black" VerticalOptions="Center" Margin="0,0,25,0"/>
+                                    </StackLayout>
+                                </Frame>
+                            </Frame>
+
+
+                        </Grid>
+
+
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+        </RefreshView>
+        <Button Text="{Binding ButtonLabel}" Command="{Binding  PayCommand}"
+                BackgroundColor="#FFD000"
+               
+                Grid.Row="2"/>
+        <views:Tabbar HorizontalOptions="FillAndExpand"
+                          BackgroundColor="White"
+                          Grid.Row="3"
+                      CorrectIndex="2"/>
+    </Grid>
+</ContentPage>

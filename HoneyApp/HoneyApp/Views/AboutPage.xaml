@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HoneyApp.Views.AboutPage"
+             xmlns:vm="clr-namespace:HoneyApp.ViewModels"
+             Shell.NavBarIsVisible="False"
+              xmlns:extens="clr-namespace:HoneyApp.Services"
+              xmlns:model="clr-namespace:HoneyApp.Models"  
+             xmlns:views="clr-namespace:HoneyApp.Views"  
+             xmlns:service ="clr-namespace:HoneyApp.Services"
+              BackgroundColor="LightYellow">
+    
+    <ContentPage.BindingContext>
+        <vm:AboutViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <service:ByteToImageFieldConverter x:Key="bic" />
+        </ResourceDictionary>
+       
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            
+        </Grid.RowDefinitions>
+        <ScrollView Grid.Row="0">
+            <StackLayout Orientation="Vertical" Padding="30,24,30,24" Spacing="10">
+                <Image  Source="{extens:ImageResource mainlogo.png}"   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                        Aspect="AspectFill"
+                />
+                <Label Text="Імперія меду" TextColor ="Black" HorizontalOptions="Center" FontSize="40"  FontAttributes="Italic"/>
+                <CarouselView ItemsSource="{Binding Images }" HeightRequest="200" >
+                    <CarouselView.ItemTemplate >
+                        <DataTemplate  >
+
+                            <Frame Padding="0" CornerRadius="25" Margin="10,0" >
+                                <Image Source="{Binding . }" x:Name="image" Aspect="AspectFill"/>
+                            </Frame>
+
+
+
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+                <Label Text="Група: Тяпко В. Самокрик В. Курдельчук Т. Соловйова Д." FontSize="Title" TextColor="Black"/>
+                <Label Text="Про нас" FontSize="Title" TextColor="Black"/>
+                <Label Text="Ми компанія, що має єдину ціль - зробити ваше життя солодким і здоровим" FontSize="16" Padding="0,0,0,0"/>
+                <Label FontSize="16" Padding="0,24,0,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <FormattedString.Spans>
+                                <Span Text="Приєднуйся до нас "/>
+                                <Span Text="https://honeyshop.com" FontAttributes="Bold"/>
+                            </FormattedString.Spans>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Button Margin="0,10,0,0" Text="Приєднатися" CornerRadius="10"
+                        Command="{Binding OpenWebCommand}"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="Black" />
+                <Label Text="Пропозиція для вас:" TextColor="Black" FontSize="25" FontAttributes="Bold" />
+
+                <Frame Padding="2,0"  CornerRadius="20"  HeightRequest="100" HasShadow="True">
+                    <StackLayout Orientation="Horizontal">
+
+                        <Image Source="{Binding Product.Icon,Converter= {StaticResource bic}}"/>
+                        <StackLayout  Padding="10"  HorizontalOptions ="FillAndExpand" VerticalOptions="Center" >
+
+                            <Label Text="{Binding Product.Name}" 
+                                        LineBreakMode="NoWrap" 
+                                       TextColor="Black"
+                                       FontAttributes="Bold"
+                                        Style="{DynamicResource ListItemTextStyle}" 
+                                        FontSize="16" />
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span Text="{Binding Product.Price}"/>
+                                            <Span Text=" грн"/>
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+
+
+                        </StackLayout>
+
+                    </StackLayout>
+                </Frame>
+
+                
+            </StackLayout>
+           
+        </ScrollView>
+        <views:Tabbar HorizontalOptions="FillAndExpand"
+                          BackgroundColor="White"
+                          Grid.Row="1"
+                      CorrectIndex="0"/>
+    </Grid>
+   
+
+</ContentPage>

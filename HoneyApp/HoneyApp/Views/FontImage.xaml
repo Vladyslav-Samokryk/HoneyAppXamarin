@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HoneyApp.Views.FontImage"
+             x:Name="this" Padding="0">
+    <ContentView.Content>
+        <Image>
+            <Image.Source>
+                <FontImageSource
+                    x:Name="fontImageSource"
+                    Size="{Binding Source={x:Reference this}, Path=Size}"
+                    Color="{Binding Source={x:Reference this}, Path=Color}"
+                    Glyph="{Binding Source={x:Reference this}, Path=Source}"
+                    FontFamily="iconsfont"
+                    />
+            </Image.Source>
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"
+                                      NumberOfTapsRequired="1"                                 
+                                     />
+            </Image.GestureRecognizers>
+        </Image>
+    </ContentView.Content>
+</ContentView>
